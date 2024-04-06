@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Client</title>
+  </head>
+  <body>
+    <div id="output"></div>
+
+    <script>
+      const outputElement = document.getElementById("output");
+
+      // Connect to WebSocket server
+      const socket = new WebSocket("ws://10.12.13.92:8000/video-feed");
+
+      // Event listener for WebSocket open
+      socket.addEventListener("open", function (event) {
+        console.log("Connected to WebSocket server");
+      });
+
+      // Event listener for WebSocket messages
+      socket.addEventListener("message", function (event) {
+        // Display received text output
+        outputElement.textContent = event.data;
+      });
+
+      // Event listener for WebSocket close
+      socket.addEventListener("close", function (event) {
+        console.log("Disconnected from WebSocket server");
+      });
+
+      // Event listener for WebSocket errors
+      socket.addEventListener("error", function (event) {
+        console.error("WebSocket error:", event);
+      });
+    </script>
+  </body>
+</html>
