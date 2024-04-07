@@ -69,8 +69,8 @@ let joinStream=async()=>{
 </div>`
 
     document.getElementById("streams__container").insertAdjacentHTML("beforeend",player)
-    document.getElementById(`user-container-${uid}`).addEventListener("click",expandvideoFrame)
-    localTracks[1].play(`user-${uid}`)
+    document.getElementById(user-container-${uid}).addEventListener("click",expandvideoFrame)
+    localTracks[1].play(user-${uid})
     await client.publish([localTracks[0],localTracks[1]])
 }
 
@@ -79,23 +79,23 @@ let handleUserPublished = async(user,mediaType)=>{
     
     await client.subscribe(user,mediaType)
     
-    let player = document.getElementById(`user-container-${user.uid}`)
+    let player = document.getElementById(user-container-${user.uid})
     if (player===null){
         player=`<div class="video__container" id="user-container-${user.uid}">
         <div class="video-player" id="user-${user.uid}"></div>
         </div>`
         
         document.getElementById("streams__container").insertAdjacentHTML("beforeend",player)
-        document.getElementById(`user-container-${user-uid}`).addEventListener("click",expandvideoFrame)
+        document.getElementById(user-container-${user-uid}).addEventListener("click",expandvideoFrame)
     }
     if(displayFrame.style.display){
-        let videoFrame=document.getElementById(`user-container-${user-uid}`)
+        let videoFrame=document.getElementById(user-container-${user-uid})
         videoFrame.style.height = '100px'
         videoFrame.style.width = '100px'
     }
 
     if(mediaType==="video"){
-        user.videoTrack.play(`user-${user.uid}`)
+        user.videoTrack.play(user-${user.uid})
     }
     if(mediaType==="audio"){
         user.audioTrack.play()
@@ -104,12 +104,12 @@ let handleUserPublished = async(user,mediaType)=>{
 
 let handleUserLeft = async (user) => {
     delete remoteUsers[user.uid]
-    let item = document.getElementById(`user-container-${user.uid}`)
+    let item = document.getElementById(user-container-${user.uid})
     if(item){
         item.remove()
     }
 
-    if(userIdInDisplayFrame === `user-container-${user.uid}`){
+    if(userIdInDisplayFrame === user-container-${user.uid}){
         displayFrame.style.display = null
         
         let videoFrames = document.getElementsByClassName('video__container')
@@ -160,7 +160,7 @@ let toggleScreen=async(e)=>{
 
         localScreenTracks = await AgoraRTC.createScreenVideoTrack()
 
-        document.getElementById(`user-container-${uid}`).remove()
+        document.getElementById(user-container-${uid}).remove()
        // displayFrame.style.display="block"
 
         let player=`<div class="video__container" id="user-container-${uid}">
@@ -169,10 +169,10 @@ let toggleScreen=async(e)=>{
 
         document.getElementById("stream__container").insertAdjacentHTML("beforeend",player)
        // displayFrame.insertAdjacentElement("beforeend",player)
-        document.getElementById(`user-conatiner-${uid}`).addEventListener("click",expandvideoFrame)
+        document.getElementById(user-conatiner-${uid}).addEventListener("click",expandvideoFrame)
 
-        userIdDisplayFrame=`user-conatiner-${uid}`
-        localScreenTracks.play(`user-${uid}`)
+        userIdDisplayFrame=user-conatiner-${uid}
+        localScreenTracks.play(user-${uid})
 
         //await client.unpublish([localTracks[1]])
         //await client.publish([localScreenTracks])
@@ -188,7 +188,7 @@ let toggleScreen=async(e)=>{
     else{
        sharingScreen=false
        //cameraButton.style.display="block"
-        document.getElementById(`user-container-${uid}`).remove()
+        document.getElementById(user-container-${uid}).remove()
        // await client.unpublish([localScreenTracks])
 
     // switchToCamera()
@@ -209,12 +209,12 @@ let leaveStream = async (e) => {
         await client.unpublish([localScreenTracks])
     }
 
-    document.getElementById(`user-container-${uid}`).remove()
+    document.getElementById(user-container-${uid}).remove()
 
    
 
     channel.sendMessage({text:JSON.stringify({'type':'user_left', 'uid':uid})})
-    window.location=`lobby.html`
+    window.location=lobby.html
 }
 
 
