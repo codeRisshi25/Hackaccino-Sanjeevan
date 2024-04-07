@@ -185,7 +185,7 @@
 
         function updateUserProfile(user) {
             const userElement = document.getElementById('defaultName');
-            const helloTxt = document.getElementbyId('welcome-txt');
+            const helloTxt = document.getElementById('welcome-txt');
             if (user) {
                 userElement.value = user.displayName;
                 helloTxt.textContent = "Hello "+user.displayName+" !"
