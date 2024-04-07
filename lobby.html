@@ -117,7 +117,7 @@
  
                 <div class="form__field__wrapper">
                     <label></label>
-                    <input class="nameidd" type="text" name="name" required placeholder="Enter your name" />
+                    <input id="defaultName" class="nameidd" type="text" name="name" required placeholder="Enter your name" />
                 </div>
 
                 <div class="form__field__wrapper">
@@ -155,4 +155,45 @@
         }
     </script>
     <script type="text/javascript" src="js/lobby.js"></script>
+    
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
+    
+    const firebaseConfig = {
+    apiKey: "AIzaSyALOVFuKxS5MusR5IKqEM2MUpRDMCoiDU0",
+    authDomain: "sanjeevan-419507.firebaseapp.com",
+    projectId: "sanjeevan-419507",
+    storageBucket: "sanjeevan-419507.appspot.com",
+    messagingSenderId: "750063415995",
+    appId: "1:750063415995:web:16faf6131972aad2cc6f9e",
+    measurementId: "G-NY6WWM6SJ0"
+  };
+
+  const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    auth.languageCode = 'en';
+    const provider = new GoogleAuthProvider();
+    const user = auth.currentUser;
+
+        function updateUserProfile(user) {
+            const userElement = document.getElementById('defaultName');
+            if (user) {
+                userElement.value = user.displayName;
+            } else {
+                userElement.value = 'failed';
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in, let's call updateUserProfile
+        updateUserProfile(user);
+    } else {
+        // No user is signed in.
+        console.log('No user is signed in.');
+    }
+});
+
+    </script>
 </html>
