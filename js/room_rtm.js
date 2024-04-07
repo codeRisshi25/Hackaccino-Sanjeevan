@@ -6,14 +6,14 @@ let handleMemberJoined = async (MemberId) => {
     updateMemberTotal(members)
 
     let {name} = await rtmClient.getUserAttributesByKeys(MemberId, ['name'])
-    addBotMessageToDom(`Welcome to the room ${name}! 👋`)
+    addBotMessageToDom(Welcome to the room ${name}! 👋)
 }
 
 let addMemberToDom = async (MemberId) => {
     let {name} = await rtmClient.getUserAttributesByKeys(MemberId, ['name'])
 
     let membersWrapper = document.getElementById('member__list')
-    let memberItem = `<div class="member__wrapper" id="member__${MemberId}__wrapper">
+    let memberItem = `<div class="member_wrapper" id="member${MemberId}_wrapper">
                         <span class="green__icon"></span>
                         <p class="member_name">${name}</p>
                     </div>`
@@ -34,9 +34,9 @@ let handleMemberLeft = async (MemberId) => {
 }
 
 let removeMemberFromDom = async (MemberId) => {
-    let memberWrapper = document.getElementById(`member__${MemberId}__wrapper`)
+    let memberWrapper = document.getElementById(member__${MemberId}__wrapper)
     let name = memberWrapper.getElementsByClassName('member_name')[0].textContent
-    addBotMessageToDom(`${name} has left the room.`)
+    addBotMessageToDom(${name} has left the room.)
         
     memberWrapper.remove()
 }
@@ -58,9 +58,9 @@ let handleChannelMessage = async (messageData, MemberId) => {
     }
 
     if(data.type === 'user_left'){
-        document.getElementById(`user-container-${data.uid}`).remove()
+        document.getElementById(user-container-${data.uid}).remove()
 
-        if(userIdInDisplayFrame === `user-container-${uid}`){
+        if(userIdInDisplayFrame === user-container-${uid}){
             displayFrame.style.display = null
     
             for(let i = 0; videoFrames.length > i; i++){
@@ -103,9 +103,9 @@ let addBotMessageToDom = (botMessage) => {
     let messagesWrapper = document.getElementById('messages')
 
     let newMessage = `<div class="message__wrapper">
-                        <div class="message__body__bot">
-                            <strong class="message__author__bot">🤖Sanjeevan</strong>
-                            <p class="message__text__bot">${botMessage}</p>
+                        <div class="message_body_bot">
+                            <strong class="message_author_bot">🤖Sanjeevan</strong>
+                            <p class="message_text_bot">${botMessage}</p>
                         </div>
                     </div>`
 
