@@ -85,7 +85,7 @@
         right: 50px;
 
     }
-    .welcome-txt {
+    #welcome-txt {
         position: absolute;
         top: -16px;
         right: 300px;
@@ -112,7 +112,7 @@
     <div class="head1">Video calls and meeting <br>&nbsp;&nbsp;&nbsp; for everyone</div>
     <div class="icon1"><i class="fa-solid fa-gear"></i></div>
     <div class="icon2"><i class="fa-solid fa-user"></i></div>
-    <div class="welcome-txt"></div>
+    <div id="welcome-txt"></div>
     <main id="room__lobby__container">
         
         <div id="form__container">
@@ -185,10 +185,10 @@
 
         function updateUserProfile(user) {
             const userElement = document.getElementById('defaultName');
-            const helloTxt = document.getElementByClass('welcome-txt');
+            const helloTxt = document.getElementbyId('welcome-txt');
             if (user) {
                 userElement.value = user.displayName;
-                helloTxt.value = "Hello "+user.displayName+" !"
+                helloTxt.textContent = "Hello "+user.displayName+" !"
             } else {
                 userElement.value = 'failed';
             }
